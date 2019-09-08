@@ -109,6 +109,9 @@ public:
 	//destructor
 	//Deallocates the memory occupied by the array.
 
+	int minLocation(int first, int last);
+	//Returns the location of the smallest element in a given list
+
 protected:
 	elemType* list;  //array to hold the list elements
 	int length;      //to store the length of the list
@@ -320,6 +323,19 @@ arrayListType<elemType>::~arrayListType()
 {
 	delete[] list;
 }
+
+template<class elemType>
+int arrayListType<elemType>::minLocation(int first, int last)
+{
+	int minIndex;
+	minIndex = first;
+
+	for (int loc = first + 1; loc <= last; loc++)
+		if (list[loc] < list[minIndex])
+			minIndex = loc;
+
+	return minIndex;
+}//end minLocation
 
 
 template <class elemType>
