@@ -341,21 +341,23 @@ template<class elemType>
 void arrayListType<elemType>::swap(int first, int second)
 {
 	elemType temp;
-
+	
 	temp = list[first];
 	list[first] = list[second];
 	list[second] = temp;
+
+	
 }//end swap
 template<class elemType>
 void arrayListType<elemType>::selectionSort()
 {
 	int minIndex;
-
 	for (int loc = 0; loc < length - 1; loc++)
 	{
 		minIndex = minLocation(loc, length - 1);
 		swap(loc, minIndex);
 	}
+
 }//end selectionSort
 
 
