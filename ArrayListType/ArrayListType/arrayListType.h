@@ -109,13 +109,14 @@ public:
 	//destructor
 	//Deallocates the memory occupied by the array.
 
-	int minLocation(int first, int last);
-	//Returns the location of the smallest element in a given list
-
+	void selectionSort();
+	//Performs a selection sort
 protected:
 	elemType* list;  //array to hold the list elements
 	int length;      //to store the length of the list
 	int maxSize;     //to store the maximum size of the list
+	int minLocation(int first, int last);	//Returns the location of the smallest element in a given list
+	void swap(int first, int second);	//Swaps the elements
 };
 
 template <class elemType>
@@ -336,6 +337,28 @@ int arrayListType<elemType>::minLocation(int first, int last)
 
 	return minIndex;
 }//end minLocation
+template<class elemType>
+void arrayListType<elemType>::swap(int first, int second)
+{
+	elemType temp;
+
+	temp = list[first];
+	list[first] = list[second];
+	list[second] = temp;
+}//end swap
+template<class elemType>
+void arrayListType<elemType>::selectionSort()
+{
+	int minIndex;
+
+	for (int loc = 0; loc < length - 1; loc++)
+	{
+		minIndex = minLocation(loc, length - 1);
+		swap(loc, minIndex);
+	}
+}//end selectionSort
+
+
 
 
 template <class elemType>
