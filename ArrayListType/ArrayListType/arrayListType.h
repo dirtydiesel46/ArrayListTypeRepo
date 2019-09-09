@@ -482,6 +482,9 @@ int arrayListType<elemType>::partition(int first, int last)
 		{
 			smallIndex++;
 			swap(smallIndex, index);
+			cout << "List: ";
+			print();
+			cout << endl;
 		}
 	swap(first, smallIndex);
 
