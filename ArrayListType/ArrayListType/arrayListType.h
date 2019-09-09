@@ -114,6 +114,9 @@ public:
 
 	void insertionSort();
 	//Performs insertion sort
+
+	void shellSort();
+	void intervalInsertionSort(int begin, int inc);
 protected:
 	elemType* list;  //array to hold the list elements
 	int length;      //to store the length of the list
@@ -418,4 +421,29 @@ void arrayListType<elemType>::insertionSort() {
 			list[location] = temp;
 		}
 }
+
+
+template<class elemType>
+void intervalInsertionSort(int begin, int inc) {
+	// Mother fucker!!!
+	/*
+		sublist starts at the variable begin and the increaent between successive elements
+		is given by the variable inc instead of 1
+	*/
+	
+}
+
+template<class elemType>
+void arrayListType<elemType>::shellSort(){
+	int inc;
+
+	for(inc=1; inc < (length -1) / 9; inc= 3*inc + 1)
+		do {
+			for (int begin = 0; begin < inc; begin++)
+				intervalInsertionSort(begin, inc);
+
+			inc = inc / 3;
+		} while (inc > 0);
+}
+
 #endif
