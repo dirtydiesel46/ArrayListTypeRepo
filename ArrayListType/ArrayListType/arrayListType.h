@@ -111,12 +111,21 @@ public:
 
 	void selectionSort();
 	//Performs a selection sort
+
+	void insertionSort();
+	//Performs a insertion sort
+
+	void shellSort();
+	//Performs a shellSort
+
+
 protected:
 	elemType* list;  //array to hold the list elements
 	int length;      //to store the length of the list
 	int maxSize;     //to store the maximum size of the list
 	int minLocation(int first, int last);	//Returns the location of the smallest element in a given list
 	void swap(int first, int second);	//Swaps the elements
+	void intervalInsertionSort(int begin,int inc); //modded version of insertionSort
 };
 
 template <class elemType>
@@ -349,6 +358,34 @@ void arrayListType<elemType>::swap(int first, int second)
 	
 }//end swap
 template<class elemType>
+void arrayListType<elemType>::intervalInsertionSort(int begin,int inc)
+{
+	int firstOutOfOrder, location;
+	elemType temp;
+
+	for (firstOutOfOrder = begin ; firstOutOfOrder < length ; firstOutOfOrder++)
+	{
+		if (list[firstOutOfOrder] < list[firstOutOfOrder - 1])
+		{
+			temp = list[firstOutOfOrder];
+			location = firstOutOfOrder;
+
+			do
+			{
+				list[location] = list[location - 1];
+				location--;
+			} while (location > 0 && list[location - 1] > temp);
+
+			list[location] = temp;
+
+		}
+		cout << "List " << firstOutOfOrder << " : ";
+		print();
+		cout << endl;
+	}
+}//end intervalInsertionSort
+
+template<class elemType>
 void arrayListType<elemType>::selectionSort()
 {
 	int minIndex;
@@ -356,9 +393,55 @@ void arrayListType<elemType>::selectionSort()
 	{
 		minIndex = minLocation(loc, length - 1);
 		swap(loc, minIndex);
+		print();
+		cout<< endl;
 	}
 
 }//end selectionSort
+template<class elemType>
+void arrayListType<elemType>::insertionSort()
+{
+	int firstOutOfOrder, location;
+	elemType temp;
+
+	for (firstOutOfOrder = 1; firstOutOfOrder < length; firstOutOfOrder++)
+	{
+		if (list[firstOutOfOrder] < list[firstOutOfOrder - 1])
+		{
+			temp = list[firstOutOfOrder];
+			location = firstOutOfOrder;
+
+			do
+			{
+				list[location] = list[location - 1];
+				location--;
+			} while (location > 0 && list[location - 1] > temp);
+
+			list[location] = temp;
+
+		}
+		cout << "List " << firstOutOfOrder << " : ";
+		print();
+		cout << endl;
+	}
+}//end insertionSort
+template<class elemType>
+void arrayListType<elemType>::shellSort()
+{
+	int inc;
+
+	for (inc = 1; inc < (length - 1) / 9; inc = 3 * inc + 1);
+
+	do
+	{
+		for (int begin = 0; begin < inc; begin++)
+			intervalInsertionSort(begin, inc);
+
+		inc = inc / 3;
+	} while (inc > 0);
+
+}//end shellSort
+
 
 
 
