@@ -21,12 +21,12 @@ int main()
 	list.print();
 	cout << endl;
 
-	list.selectionSort();
+	//list.selectionSort();
+	list.insertionSort();
 
 	cout << "Line 19: The list after sorting:" << endl;
 	list.print();
 	cout << endl;
-
 
 	return 0;
 }

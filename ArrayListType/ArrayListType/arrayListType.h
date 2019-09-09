@@ -111,6 +111,9 @@ public:
 
 	void selectionSort();
 	//Performs a selection sort
+
+	void insertionSort();
+	//Performs insertion sort
 protected:
 	elemType* list;  //array to hold the list elements
 	int length;      //to store the length of the list
@@ -397,5 +400,22 @@ const arrayListType<elemType>& arrayListType<elemType>::operator=
 	return *this;
 }
 
+template<class elemType>
+void arrayListType<elemType>::insertionSort() {
+	int firstOutofOrder, location;
+	elemType temp;
 
+	for(firstOutofOrder=1; firstOutofOrder < length; firstOutofOrder++)
+		if (list[firstOutofOrder] < list[firstOutofOrder - 1]) {
+			temp = list[firstOutofOrder];
+			location = firstOutofOrder;
+
+			do {
+				list[location] = list[location - 1];
+				location--;
+			} while (location > 0 && list[location - 1] > temp);
+
+			list[location] = temp;
+		}
+}
 #endif
