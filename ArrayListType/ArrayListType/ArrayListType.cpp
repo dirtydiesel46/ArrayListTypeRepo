@@ -22,7 +22,8 @@ int main()
 	cout << endl;
 
 	//list.selectionSort();
-	list.insertionSort();
+	/*list.insertionSort();*/
+	list.shellSort();
 
 	cout << "Line 19: The list after sorting:" << endl;
 	list.print();
