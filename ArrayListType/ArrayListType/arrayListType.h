@@ -118,6 +118,13 @@ public:
 	void shellSort();
 	//Performs a shellSort
 
+	void recQuickSort(int first, int last);
+	//Performs a recursive quicksort
+
+	void quickSort();
+	//calls the recursive quicksort
+
+
 
 protected:
 	elemType* list;  //array to hold the list elements
@@ -126,6 +133,7 @@ protected:
 	int minLocation(int first, int last);	//Returns the location of the smallest element in a given list
 	void swap(int first, int second);	//Swaps the elements
 	void intervalInsertionSort(int begin,int inc); //modded version of insertionSort
+	int partition(int first, int last);	//to partition sublists for quicksort
 };
 
 template <class elemType>
@@ -354,8 +362,6 @@ void arrayListType<elemType>::swap(int first, int second)
 	temp = list[first];
 	list[first] = list[second];
 	list[second] = temp;
-
-	
 }//end swap
 template<class elemType>
 void arrayListType<elemType>::intervalInsertionSort(int begin,int inc)
@@ -440,7 +446,48 @@ void arrayListType<elemType>::shellSort()
 		inc = inc / 3;
 	} while (inc > 0);
 
+}
+template<class elemType>
+void arrayListType<elemType>::recQuickSort(int first, int last)
+{
+	int pivotLocation;
+
+	if (first < last)
+	{
+		pivotLocation = partition(first, last);
+		recQuickSort(first, pivotLocation - 1);
+		recQuickSort(pivotLocation + 1, last);
+	}
+}//end recQuickSort
+template<class elemType>
+void arrayListType<elemType>::quickSort()
+{
+	recQuickSort(0, length - 1);
+}
+
+template<class elemType>
+int arrayListType<elemType>::partition(int first, int last)
+{
+	elemType pivot;
+
+	int index, smallIndex;
+
+	swap(first, (first + last) / 2);
+
+	pivot = list[first];
+	smallIndex = first;
+
+	for (index = first+1;index<=last;index++)
+		if (list[index] < pivot)
+		{
+			smallIndex++;
+			swap(smallIndex, index);
+		}
+	swap(first, smallIndex);
+
+	return smallIndex;
 }//end shellSort
+
 
 
 

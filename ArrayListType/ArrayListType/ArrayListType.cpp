@@ -23,7 +23,7 @@ int main()
 
 	//list.selectionSort();
 	/*list.insertionSort();*/
-	list.shellSort();
+	list.quickSort();
 
 	cout << "Line 19: The list after sorting:" << endl;
 	list.print();
