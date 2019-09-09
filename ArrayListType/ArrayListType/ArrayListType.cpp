@@ -8,7 +8,7 @@ int main()
 
 	cout << "Line 8: Enter numbers ending with -999"
 		<< endl;
-
+	// 8 1 11 4 2 9 10 5 3 12 6 7 -999
 	cin >> num;
 
 	while (num != -999)
