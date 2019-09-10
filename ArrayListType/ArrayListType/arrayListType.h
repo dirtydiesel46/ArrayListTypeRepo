@@ -354,6 +354,7 @@ int arrayListType<elemType>::minLocation(int first, int last)
 
 	return minIndex;
 }//end minLocation
+
 template<class elemType>
 void arrayListType<elemType>::swap(int first, int second)
 {
@@ -363,6 +364,7 @@ void arrayListType<elemType>::swap(int first, int second)
 	list[first] = list[second];
 	list[second] = temp;
 }//end swap
+
 template<class elemType>
 void arrayListType<elemType>::intervalInsertionSort(int begin,int inc)
 {
@@ -404,6 +406,7 @@ void arrayListType<elemType>::selectionSort()
 	}
 
 }//end selectionSort
+
 template<class elemType>
 void arrayListType<elemType>::insertionSort()
 {
@@ -431,6 +434,7 @@ void arrayListType<elemType>::insertionSort()
 		cout << endl;
 	}
 }//end insertionSort
+
 template<class elemType>
 void arrayListType<elemType>::shellSort()
 {
@@ -459,6 +463,7 @@ void arrayListType<elemType>::recQuickSort(int first, int last)
 		recQuickSort(pivotLocation + 1, last);
 	}
 }//end recQuickSort
+
 template<class elemType>
 void arrayListType<elemType>::quickSort()
 {
@@ -490,11 +495,6 @@ int arrayListType<elemType>::partition(int first, int last)
 
 	return smallIndex;
 }//end shellSort
-
-
-
-
-
 
 template <class elemType>
 arrayListType<elemType>::arrayListType
@@ -529,6 +529,4 @@ const arrayListType<elemType>& arrayListType<elemType>::operator=
 
 	return *this;
 }
-
-
 #endif
