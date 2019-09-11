@@ -116,13 +116,23 @@ public:
 	//Performs insertion sort
 
 	void shellSort();
-	void intervalInsertionSort(int begin, int inc);
+	//Shellsort
+
+	void quickSort();
+	//Quick sort;
 protected:
 	elemType* list;  //array to hold the list elements
 	int length;      //to store the length of the list
 	int maxSize;     //to store the maximum size of the list
 	int minLocation(int first, int last);	//Returns the location of the smallest element in a given list
 	void swap(int first, int second);	//Swaps the elements
+
+	void intervalInsertionSort(int begin, int inc); //Shellsort
+
+	int partition(int first, int last);
+	void recQuickSort(int first, int last);
+	
+	//Quick sort
 };
 
 template <class elemType>
@@ -350,9 +360,11 @@ void arrayListType<elemType>::swap(int first, int second)
 	
 	temp = list[first];
 	list[first] = list[second];
-	list[second] = temp;
+	list[second] = temp;	
 
-	
+	/*cout << "checking list: ";
+	print();
+	cout << endl;*/
 }//end swap
 template<class elemType>
 void arrayListType<elemType>::selectionSort()
@@ -425,25 +437,57 @@ void arrayListType<elemType>::insertionSort() {
 
 template<class elemType>
 void arrayListType<elemType>::intervalInsertionSort(int begin, int inc) {
-	// Mother fucker!!!
-	/*
-		sublist starts at the variable begin and the increaent between successive elements
-		is given by the variable inc instead of 1
-	*/
-	
+	// This author is a stupid autistic ma se c++;
 }
 
 template<class elemType>
 void arrayListType<elemType>::shellSort(){
 	int inc;
 
-	for(inc=1; inc < (length -1) / 9; inc= 3*inc + 1)
+	for (inc = 1; inc < (length - 1) / 9; inc = 3 * inc + 1)
 		do {
 			for (int begin = 0; begin < inc; begin++)
 				intervalInsertionSort(begin, inc);
 
 			inc = inc / 3;
 		} while (inc > 0);
+}
+
+template<class elemType>
+int arrayListType<elemType>::partition(int first, int last) {
+	elemType pivot;
+
+	int index, smallIndex;
+
+	swap(first, (first + last) / 2);
+
+	pivot = list[first];
+	smallIndex = first;
+	
+	for(index = first + 1; index <= last; index++)
+		if (list[index] < pivot) {
+			smallIndex++;
+			swap(smallIndex, index);
+		}
+
+	swap(first, smallIndex);
+	return smallIndex;
+}
+
+template<class elemType>
+void arrayListType<elemType>::recQuickSort(int first, int last) {
+	int pivotLocation;
+
+	if (first < last) {
+		pivotLocation = partition(first, last);
+		recQuickSort(first, pivotLocation - 1);
+		recQuickSort(pivotLocation + 1, last);
+	}
+}
+
+template<class elemType>
+void arrayListType<elemType>::quickSort() {
+	recQuickSort(0, length - 1);
 }
 
 #endif
