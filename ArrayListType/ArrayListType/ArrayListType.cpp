@@ -22,9 +22,11 @@ int main()
 	cout << endl;
 
 	//list.selectionSort();
-	list.insertionSort();
+	//list.insertionSort();
+	//list.shellSort();
+	list.quickSort();
 
-	cout << "Line 19: The list after sorting:" << endl;
+	cout << "The list after sorting:" << endl;
 	list.print();
 	cout << endl;
 
