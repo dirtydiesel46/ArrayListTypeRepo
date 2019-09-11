@@ -424,7 +424,7 @@ void arrayListType<elemType>::insertionSort() {
 
 
 template<class elemType>
-void intervalInsertionSort(int begin, int inc) {
+void arrayListType<elemType>::intervalInsertionSort(int begin, int inc) {
 	// Mother fucker!!!
 	/*
 		sublist starts at the variable begin and the increaent between successive elements
