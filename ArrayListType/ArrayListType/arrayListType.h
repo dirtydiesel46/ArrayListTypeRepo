@@ -343,6 +343,7 @@ int arrayListType<elemType>::minLocation(int first, int last)
 
 	return minIndex;
 }//end minLocation
+
 template<class elemType>
 void arrayListType<elemType>::swap(int first, int second)
 {
@@ -350,10 +351,9 @@ void arrayListType<elemType>::swap(int first, int second)
 	
 	temp = list[first];
 	list[first] = list[second];
-	list[second] = temp;
-
-	
+	list[second] = temp;	
 }//end swap
+
 template<class elemType>
 void arrayListType<elemType>::selectionSort()
 {
@@ -362,12 +362,11 @@ void arrayListType<elemType>::selectionSort()
 	{
 		minIndex = minLocation(loc, length - 1);
 		swap(loc, minIndex);
+		print();
+		cout << endl;
 	}
 
 }//end selectionSort
-
-
-
 
 template <class elemType>
 arrayListType<elemType>::arrayListType
@@ -408,7 +407,8 @@ void arrayListType<elemType>::insertionSort() {
 	int firstOutofOrder, location;
 	elemType temp;
 
-	for(firstOutofOrder=1; firstOutofOrder < length; firstOutofOrder++)
+	for (firstOutofOrder = 1; firstOutofOrder < length; firstOutofOrder++)
+	{
 		if (list[firstOutofOrder] < list[firstOutofOrder - 1]) {
 			temp = list[firstOutofOrder];
 			location = firstOutofOrder;
@@ -420,11 +420,14 @@ void arrayListType<elemType>::insertionSort() {
 
 			list[location] = temp;
 		}
+		print();
+		cout << endl;
+	}
 }
 
 
 template<class elemType>
-void intervalInsertionSort(int begin, int inc) {
+void arrayListType<elemType>::intervalInsertionSort(int begin, int inc) {
 	// Mother fucker!!!
 	/*
 		sublist starts at the variable begin and the increaent between successive elements

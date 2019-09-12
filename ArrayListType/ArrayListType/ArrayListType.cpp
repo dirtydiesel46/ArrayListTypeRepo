@@ -5,9 +5,12 @@ int main()
 {
 	arrayListType<int> list;
 	int num;
+	
+	cout << "##############################" << endl;
+	cout << "# Insertion Sort Application #" << endl;
+	cout << "##############################" << endl << endl;
 
-	cout << "Line 8: Enter numbers ending with -999"
-		<< endl;
+	cout << "Enter numbers ending with -999: " << endl;
 
 	cin >> num;
 
@@ -16,15 +19,17 @@ int main()
 		list.insert(num);
 		cin >> num;
 	}
-
-	cout << "Line 15: The list before sorting:" << endl;
-	list.print();
 	cout << endl;
+	/*
+	cout << "The list before sorting:" << endl;
+	list.print();
+	cout << endl;*/
 
+	cout << "Sorting the list:" << endl;
 	//list.selectionSort();
 	list.insertionSort();
 
-	cout << "Line 19: The list after sorting:" << endl;
+	cout << "The sorted list:" << endl;
 	list.print();
 	cout << endl;
 
