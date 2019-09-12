@@ -362,9 +362,9 @@ void arrayListType<elemType>::swap(int first, int second)
 	list[first] = list[second];
 	list[second] = temp;	
 
-	cout << "checking list: ";
+	/*cout << "checking list: ";
 	print();
-	cout << endl;
+	cout << endl;*/
 }//end swap
 template<class elemType>
 void arrayListType<elemType>::selectionSort()
@@ -461,6 +461,10 @@ int arrayListType<elemType>::partition(int first, int last) {
 
 	swap(first, (first + last) / 2);
 
+	cout << "List after finding pivot: " << endl;
+	print();
+	cout << endl;
+
 	pivot = list[first];
 	smallIndex = first;
 	
@@ -470,7 +474,17 @@ int arrayListType<elemType>::partition(int first, int last) {
 			swap(smallIndex, index);
 		}
 
+
+	cout << "After loop: " << endl;
+	print();
+	cout << endl;
+
 	swap(first, smallIndex);
+
+	cout << "List: ";
+	print();
+	cout << endl;
+
 	return smallIndex;
 }
 
