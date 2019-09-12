@@ -27,8 +27,8 @@ int main()
 	list.quickSort();
 
 	cout << "The list after sorting:" << endl;
-	//list.print();
-	//cout << endl;
+	list.print();
+	cout << endl;
 
 	return 0;
 }
