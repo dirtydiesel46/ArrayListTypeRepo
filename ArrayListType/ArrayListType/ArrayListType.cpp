@@ -24,7 +24,8 @@ int main()
 	//list.selectionSort();
 	//list.insertionSort();
 	//list.shellSort();
-	list.quickSort();
+	//list.quickSort();
+	list.heapSort();
 
 	cout << "The list after sorting:" << endl;
 	list.print();

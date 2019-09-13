@@ -120,6 +120,8 @@ public:
 
 	void quickSort();
 	//Quick sort;
+
+	void heapSort();
 protected:
 	elemType* list;  //array to hold the list elements
 	int length;      //to store the length of the list
@@ -128,11 +130,13 @@ protected:
 	void swap(int first, int second);	//Swaps the elements
 
 	void intervalInsertionSort(int begin, int inc); //Shellsort
-
-	int partition(int first, int last);
-	void recQuickSort(int first, int last);
-	
 	//Quick sort
+	int partition(int first, int last);
+	void recQuickSort(int first, int last);	
+
+	//Heap sort
+	void heapify(int low, int high);
+	void buildHeap();
 };
 
 template <class elemType>
@@ -488,6 +492,51 @@ void arrayListType<elemType>::recQuickSort(int first, int last) {
 template<class elemType>
 void arrayListType<elemType>::quickSort() {
 	recQuickSort(0, length - 1);
+}
+
+template<class elemType>
+void arrayListType<elemType>::heapify(int low, int high) {
+	int largeIndex;
+
+	elemType temp = list[low]; //root node
+	largeIndex = 2 * low + 1;
+	
+	while (largeIndex <= high) {
+		if (largeIndex < high)
+			if (list[largeIndex] < list[largeIndex + 1])
+				largeIndex = largeIndex + 1;
+
+		if (temp > list[largeIndex])
+			break;
+		else
+		{
+			list[low] = list[largeIndex];
+
+			low = largeIndex;
+			largeIndex = 2 * low + 1;
+		}
+	}//end while
+	list[low] = temp;
+}
+
+template<class elemType>
+void arrayListType<elemType>::buildHeap() {
+	for (int index = length / 2 - 1; index >= 0; index--)
+		heapify(index, length - 1);
+}
+
+template<class elemType>
+void arrayListType<elemType>::heapSort() {
+	elemType temp;
+	
+	buildHeap();
+
+	for (int lastOutOfOrder = length - 1; lastOutOfOrder >= 0; lastOutOfOrder--) {
+		temp = list[lastOutOfOrder];
+		list[lastOutOfOrder] = list[0];
+		list[0] = temp;
+		heapify(0, lastOutOfOrder - 1);
+	}
 }
 
 #endif
