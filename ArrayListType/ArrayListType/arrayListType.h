@@ -1,7 +1,6 @@
 #ifndef H_arrayListType
 #define H_arrayListType
 
-
 #include <iostream>
 #include <cassert>
 
@@ -382,9 +381,6 @@ void arrayListType<elemType>::selectionSort()
 
 }//end selectionSort
 
-
-
-
 template <class elemType>
 arrayListType<elemType>::arrayListType
 (const arrayListType<elemType>& otherList)
@@ -538,5 +534,4 @@ void arrayListType<elemType>::heapSort() {
 		heapify(0, lastOutOfOrder - 1);
 	}
 }
-
 #endif
