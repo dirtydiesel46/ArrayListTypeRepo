@@ -471,6 +471,9 @@ int arrayListType<elemType>::partition(int first, int last) {
 		}
 
 	swap(first, smallIndex);
+	
+	//Printing after every partition
+	print();
 	return smallIndex;
 }
 
