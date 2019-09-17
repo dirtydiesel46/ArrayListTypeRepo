@@ -124,6 +124,15 @@ public:
 	void quickSort();
 	//calls the recursive quicksort
 
+	void heapify(int low, int high);
+	//restores heap in a subtree by making one item assignment
+
+	void buildHeap();
+	//uses Heapify to convert a list into a heap
+
+	void heapSort();
+	// function to implement the heapsort algo
+
 
 
 protected:
@@ -471,6 +480,58 @@ void arrayListType<elemType>::quickSort()
 }
 
 template<class elemType>
+void arrayListType<elemType>::heapify(int low, int high)
+{
+	int largeIndex;
+
+	elemType temp = list[low];//copy the root node of the subtree
+	largeIndex = 2 * low + 1; //index of the left child
+
+	while (largeIndex <= high)
+	{
+		if (largeIndex < high)
+			if (list[largeIndex] < list[largeIndex + 1])
+				largeIndex = largeIndex + 1; //index of the largest child
+
+		if (temp > list[largeIndex])//subtree is already in a heap
+			break;
+
+		else
+		{
+			list[low] = list[largeIndex];//move the larger child to the root
+
+			low = largeIndex; //go to the subtree to restore the heap
+			largeIndex = 2 * low + 1;
+		}
+	}
+
+	list[low] = temp; //insert temp into the tree, that is , list
+}
+
+template<class elemType>
+void arrayListType<elemType>::buildHeap()
+{
+	for (int index = length / 2 - 1; index >= 0; index--)
+		heapify(index, length - 1);
+}
+
+template<class elemType>
+void arrayListType<elemType>::heapSort()
+{
+	elemType temp;
+
+	buildHeap();
+
+	for (int lastOutOfOrder = length - 1; lastOutOfOrder >= 0; lastOutOfOrder--)
+	{
+		temp = list[lastOutOfOrder];
+		list[lastOutOfOrder] = list[0];
+		list[0] = temp;
+		heapify(0, lastOutOfOrder - 1);
+	}
+}
+
+template<class elemType>
 int arrayListType<elemType>::partition(int first, int last)
 {
 	elemType pivot;
@@ -487,12 +548,17 @@ int arrayListType<elemType>::partition(int first, int last)
 		{
 			smallIndex++;
 			swap(smallIndex, index);
-			cout << "List: ";
-			print();
-			cout << endl;
+			//cout << "List: ";
+			//print();
+			//cout << endl;
 		}
+	//cout << "List before swopping first and smallIndex: ";
+	//print();
+	//cout << endl;
 	swap(first, smallIndex);
-
+	cout << "List after partition: ";
+	print();
+	cout << endl;
 	return smallIndex;
 }//end shellSort
 
